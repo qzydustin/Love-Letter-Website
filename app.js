@@ -190,8 +190,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     startTypewriter(document.getElementById("letter"));
     const clockBox = document.getElementById("clock-box");
     clockBox.style.opacity = 1;
-    clockBox.style.transition = "opacity 0.5s";
-    clockBox.style.display = "block";
     while (true) {
       timeElapse(memorialDate);
       await sleep(1000);

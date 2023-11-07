@@ -39,7 +39,8 @@ body {
   left: 60px;
   top: 550px;
   font-size: 28px;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
 #clock-text {
