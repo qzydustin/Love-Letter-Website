@@ -15,84 +15,42 @@
     <script src="./javascript/jscex-async-powerpack.js"></script>
     <script type="text/javascript" src="./javascript/functions.js" charset="utf-8"></script>
     <script type="text/javascript" src="./javascript/love.js" charset="utf-8"></script>
-    <style type="text/css">
-        <!--
-        .STYLE1 {
-            color: #666666
-        }
-        -->
-    </style>
 </head>
-<audio loop id="myAudio">
+<audio loop id="bgm">
     <source src="bgm.mp3" type="audio/mpeg">
 </audio>
 <div id="main">
-    <div id="error">本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(Chrome)或者火狐(Firefox)浏览器，或者其他游览器的最新版本。</div>
-    <div id="wrap">
-        <div id="text">
-            <div id="code">
-                <span class="say">
-                    <font color="228567">哪天我老了，还跟和你热恋一样， </font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">桌前给你发消息，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">灯盏微黄，窗外风雨千墙，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">半天酿出一句我想你了，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">内心的原野，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">时而流星追月，时而万马奔腾。</font>
-                </span><br>
-                <span class="say"> </span><br>
-                <span class="say">
-                    <font color="228567">有时有月亮，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">我就做一个九曲十八弯的梦，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">每个转角都与你有关，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">你对我笑了一下，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">醒来我就发上一天呆。</font>
-                </span><br>
-                <span class="say"> </span><br>
-                <span class="say">
-                    <font color="228567">现在我在长满星星的夜里，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">阶前红豆坠满枝，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">醉过知酒浓，</font>
-                </span><br>
-                <span class="say">
-                    <font color="228567">无物抵相思。</font>
-                </span><br>
-                <span class="say"> </span><br>
-            </div>
-        </div>
-        <div id="clock-box">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Ms.Wang <span class="STYLE1">和</span> Mr.Qi <span class="STYLE1">在一起</span>
-            <div id="clock"></div>
-        </div>
-        <canvas id="canvas" width="1100" height="680" onclick="playAudio()"></canvas>
+    <div id="letter">
+        <p>哪天我老了，还跟和你热恋一样，</p>
+        <p>桌前给你发消息，</p>
+        <p>灯盏微黄，窗外风雨千墙，</p>
+        <p>半天酿出一句我想你了，</p>
+        <p>内心的原野，</p>
+        <p>时而流星追月，时而万马奔腾。</p>
+        <p><br></p>
+        <p>有时有月亮，</p>
+        <p>我就做一个九曲十八弯的梦，</p>
+        <p>每个转角都与你有关，</p>
+        <p>你对我笑了一下，</p>
+        <p>醒来我就发上一天呆。</p>
+        <p><br></p>
+        <p>现在我在长满星星的夜里，</p>
+        <p>阶前红豆坠满枝，</p>
+        <p>醉过知酒浓，</p>
+        <p>无物抵相思。</p>
     </div>
+    <div id="clock-box">
+        <div id="clock-text"><span class="name">Ms.Wang</span> 和 <span class="name">Mr.Qi</span> 在一起</div>
+        <div id="clock"></div>
+    </div>
+    <canvas id="canvas" width="1100" height="680" onclick="init()"></canvas>
 </div>
-<script>
-    var x = document.getElementById("myAudio");
 
-    function playAudio() {
-        x.play();
+<script>
+
+    function init() {
+        document.getElementById("bgm").play();
+        $("#footer").hide();
     }
 
     (function () {
@@ -237,7 +195,7 @@
             var nowTime = new Date();
             var together = new Date(strs.replace(/-/g, "/"));
 
-            $("#code").show().typewriter();
+            $("#letter").show().typewriter();
             $("#clock-box").fadeIn(500);
             while (true) {
                 timeElapse(together);
@@ -246,6 +204,7 @@
         }));
 
         var runAsync = eval(Jscex.compile("async", function () {
+
             $await(seedAnimate());
             $await(growAnimate());
             $await(flowAnimate());
@@ -257,7 +216,8 @@
         runAsync().start();
     })();
 </script>
-<div style="text-align:center;">
+<div id="footer">
+    <p>© 2017-2023 | qzydustin All Rights Reserved.</p>
 </div>
 </body>
 

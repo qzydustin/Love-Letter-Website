@@ -1,37 +1,33 @@
-body {
-  margin: 0;
-  padding: 0;
-  background: #ffe;
-  font-size: 14px;
-  font-family: "微软雅黑", "宋体", sans-serif;
-  color: #231f20;
-  overflow: auto;
-}
-a {
-  color: #000;
-  font-size: 14px;
-}
-#main {
-  width: 100%;
-}
-#wrap {
-  position: relative;
+body, p, #main, #canvas, #letter, #clock-box {
   margin: 0 auto;
+  padding: 0;
+}
+
+body {
+  background: #ffe;
+  font: 14px/1.4 "微软雅黑", "宋体", sans-serif;
+}
+
+#main, #canvas {
   width: 1100px;
   height: 680px;
-  margin-top: 10px;
 }
-#text {
+
+#main {
+  position: relative;
+}
+
+#letter {
+  position: absolute;
   width: 400px;
   height: 425px;
   left: 60px;
   top: 80px;
-  position: absolute;
-}
-#code {
   display: none;
   font-size: 16px;
+  color: #228567;
 }
+
 #clock-box {
   position: absolute;
   left: 60px;
@@ -39,33 +35,23 @@ a {
   font-size: 28px;
   display: none;
 }
-#clock-box a {
-  font-size: 28px;
-  text-decoration: none;
+
+#clock-text {
+  color: gray;
 }
+
+.name {
+  color: black;
+}
+
 #clock {
   margin-left: 48px;
 }
+
 #clock .digit {
   font-size: 64px;
 }
-#canvas {
-  margin: 0 auto;
-  width: 1100px;
-  height: 680px;
-}
-#error {
-  margin: 0 auto;
+
+#footer {
   text-align: center;
-  margin-top: 60px;
-  display: none;
-}
-.hand {
-  cursor: pointer;
-}
-.say {
-  margin-left: 5px;
-}
-.space {
-  margin-right: 150px;
 }
