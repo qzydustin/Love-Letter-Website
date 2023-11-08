@@ -61,3 +61,7 @@ Contributions make the open-source community an amazing place to learn, inspire,
 
 - Heartfelt thanks to the unknown original creator of the initial version of this project.
 - Special thanks to all contributors and users of this website.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
