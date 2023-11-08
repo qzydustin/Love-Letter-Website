@@ -92,18 +92,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const scaleContent = () => {
     const baseDimensions = { width: 1100, height: 680 };
+    const { innerWidth, innerHeight } = window;
     const scaleFactors = {
-      width: window.innerWidth / baseDimensions.width,
-      height: window.innerHeight / baseDimensions.height,
+      width: Math.min(innerWidth / baseDimensions.width, 1),
+      height: Math.min(innerHeight / baseDimensions.height, 1),
     };
+
     const scaleFactor = Math.min(scaleFactors.width, scaleFactors.height);
+    const newDimensions = {
+      width: baseDimensions.width * scaleFactor,
+      height: baseDimensions.height * scaleFactor,
+    };
+
+    const margin = {
+      top: (innerHeight - newDimensions.height) / 2,
+      left: (innerWidth - newDimensions.width) / 2,
+    };
 
     Object.assign(document.body.style, {
       transform: `scale(${scaleFactor})`,
       transformOrigin: "top left",
-      width: `${baseDimensions.width * scaleFactor}px`,
-      height: `${baseDimensions.height * scaleFactor}px`,
+      width: `${newDimensions.width}px`,
+      height: `${newDimensions.height}px`,
+      marginTop: `${margin.top}px`,
+      marginLeft: `${margin.left}px`,
     });
+
     return scaleFactor;
   };
 
