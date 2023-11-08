@@ -86,6 +86,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   };
 
+  const tree = new Tree(canvas, width, height, opts);
+  let { seed, footer } = tree;
+  let hold = true;
+
+  const scaleContent = () => {
+    const baseDimensions = { width: 1100, height: 680 };
+    const scaleFactors = {
+      width: window.innerWidth / baseDimensions.width,
+      height: window.innerHeight / baseDimensions.height,
+    };
+    const scaleFactor = Math.min(scaleFactors.width, scaleFactors.height);
+
+    Object.assign(document.body.style, {
+      transform: `scale(${scaleFactor})`,
+      transformOrigin: "top left",
+      width: `${baseDimensions.width * scaleFactor}px`,
+      height: `${baseDimensions.height * scaleFactor}px`,
+    });
+    return scaleFactor;
+  };
+
+  const scaleFactor = scaleContent();
+  window.addEventListener("resize", scaleContent);
+  canvas.addEventListener("click", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / scaleFactor;
+    const y = (e.clientY - rect.top) / scaleFactor;
+    if (seed.hover(x, y)) {
+      canvas.removeEventListener("click", this);
+      document.getElementById("bgm").play();
+      hold = false;
+    }
+  });
+
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const timeElapse = (date) => {
     const current = new Date();
     let seconds = (current - new Date(date)) / 1000;
@@ -105,24 +141,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const result = `第 <span class="digit">${days}</span> 天 <span class="digit">${hours}</span> 小时 <span class="digit">${minutes}</span> 分钟 <span class="digit">${seconds}</span> 秒`;
     document.getElementById("clock").innerHTML = result;
   };
-
-  const tree = new Tree(canvas, width, height, opts);
-  let { seed, footer } = tree;
-  let hold = true;
-
-  canvas.addEventListener("click", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    if (seed.hover(x, y)) {
-      canvas.removeEventListener("click", this);
-      document.getElementById("bgm").play();
-      document.getElementById("footer").style.display = "none";
-      hold = false;
-    }
-  });
-
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const seedAnimate = async () => {
     seed.draw();
