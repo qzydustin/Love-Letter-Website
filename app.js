@@ -107,8 +107,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     return scaleFactor;
   };
 
-  const scaleFactor = scaleContent();
-  window.addEventListener("resize", scaleContent);
+  let scaleFactor = scaleContent();
+  window.addEventListener("resize", () => {
+    scaleFactor = scaleContent();
+  });
   canvas.addEventListener("click", (e) => {
     const rect = canvas.getBoundingClientRect();
     const x = (e.clientX - rect.left) / scaleFactor;
